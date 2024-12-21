@@ -1,7 +1,7 @@
 #include "./header/global.h"
 
 int main() {
-    vector<vector<int>> matrix;
+    vector<vector<float>> matrix;
     int n, m;
 
     cout << "Enter the number of rows and columns: ";
@@ -17,7 +17,7 @@ int main() {
     findReducedRowEchelonForm(matrix);
     printMatrix(matrix);
 
-    cout << "RESOLVED LINEAR SYSTEM: " << endl;
+    cout << "SOLVED LINEAR SYSTEM: " << endl;
     printSolvedLinearSystem(matrix);
 
     return 0;
