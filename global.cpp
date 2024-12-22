@@ -45,9 +45,15 @@ void divideRow(vector<vector<float>> &matrix, int row, float divisor) {
     }
 }
 
+// [[1, 2, 3], [3, 2, 1]]
+/* 
+    1, 2, 3
+    3, 2, 1
+*/
+
 // substraction of two rows
 void subtractRows(vector<vector<float>> &matrix, int row, int leadRow, int lead) {
-    int m = matrix[0].size();
+    int m = matrix[0].size(); // Besar kolom
     float val = matrix[row][lead];
     for (int j = 0; j < m; j++) {
         matrix[row][j] -= val * matrix[leadRow][j];
@@ -101,7 +107,7 @@ void findReducedRowEchelonFormRecursive(vector<vector<float>> &matrix, int r, in
         }
     }
 
-    swap(matrix[i], matrix[r]);
+    swapRows(matrix, i, r);
     float val = matrix[r][lead];
     for (int j = 0; j < m; j++) matrix[r][j] /= val;
 

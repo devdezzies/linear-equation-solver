@@ -1,32 +1,80 @@
-#include "./header/recursive.h"
+#include <vector>
+using namespace std;
 
-void swapRowsRec(vector<vector<float>> &matrix, int i, int j, int k = 0) {
+// Recursive row swapping
+void swapRowsRec(vector<vector<float>> &matrix, int row1, int row2, int col = 0) {
     int m = matrix[0].size();
-    if (k >= m) return; // base case
-
-    float temp = matrix[i][k];
-    matrix[i][k] = matrix[j][k];
-    matrix[j][k] = temp;
-
-    swapRowsRec(matrix, i, j, k + 1); // recursive case
-}  
-
-void divideRowRec(vector<vector<float>> &matrix, int i, float val, int k = 0) {
-    int m = matrix[0].size();
-    if (k >= m) return; // base case
-
-    matrix[i][k] /= val;
-
-    divideRowRec(matrix, i, val, k + 1); // recursive case
+    // Base case: reached end of row
+    if (col >= m) return;
+    
+    // Swap current elements
+    float temp = matrix[row1][col];
+    matrix[row1][col] = matrix[row2][col];
+    matrix[row2][col] = temp;
+    
+    // Recurse on next column
+    swapRowsRec(matrix, row1, row2, col + 1);
 }
 
-void subtractRowsRec(vector<vector<float>> &matrix, int i, int j, int lead, int k = 0) {
+// Recursive row division
+// TODO: RESOLVE BUG
+void divideRowRec(vector<vector<float>> &matrix, int row, float divisor, int col = 0) {
     int m = matrix[0].size();
-    if (k >= m) return; // base case
+    // Base case: reached end of row
+    if (col >= m) return;
+    
+    // Divide current element
+    matrix[row][col] /= divisor;
+    
+    // Recurse on next column
+    divideRowRec(matrix, row, divisor, col + 1);
+}
 
-    matrix[i][k] -= matrix[j][k] * matrix[i][lead];
+// Recursive row subtraction
+// TODO: RESOLVE BUG
+void subtractRows(vector<vector<float>> &matrix, int row, int leadRow, int lead, int col = 0) {
+    int m = matrix[0].size();
+    // Base case: reached end of row
+    if (col >= m) return;
+    
+    float val = matrix[row][lead];
+    // Subtract current element
+    matrix[row][col] -= val * matrix[leadRow][col];
+    
+    // Recurse on next column
+    subtractRows(matrix, row, leadRow, lead, col + 1);
+}
 
-    subtractRowsRec(matrix, i, j, lead, k + 1); // recursive case
+// Helper function for recursive row subtractions
+// TODO: RESOLVE BUG
+void processRowSubtractions(vector<vector<float>> &matrix, int r, int lead, int currentRow = 0) {
+    int n = matrix.size();
+    // Base case: processed all rows
+    if (currentRow >= n) return;
+    
+    // Skip the pivot row
+    if (currentRow != r) {
+        subtractRows(matrix, currentRow, r, lead);
+    }
+    
+    // Recurse on next row
+    processRowSubtractions(matrix, r, lead, currentRow + 1);
+}
+
+// Helper function to find first non-zero element
+bool findNonZeroElement(vector<vector<float>> &matrix, int &i, int &lead, int r, int n, int m) {
+    if (lead >= m) return false;
+    
+    if (matrix[i][lead] != 0) return true;
+    
+    i++;
+    if (i == n) {
+        i = r;
+        lead++;
+        return findNonZeroElement(matrix, i, lead, r, n, m);
+    }
+    
+    return findNonZeroElement(matrix, i, lead, r, n, m);
 }
 
 void findReducedRowEchelonFormRec(vector<vector<float>> &matrix, int r, int lead) {
@@ -43,14 +91,14 @@ void findReducedRowEchelonFormRec(vector<vector<float>> &matrix, int r, int lead
         }
     }
 
-    swapRowsRec(matrix, i, r, 0);
+    swapRowsRec(matrix, i, r);
     float val = matrix[r][lead];
-    divideRowRec(matrix, r, val, 0);
+    for (int j = 0; j < m; j++) matrix[r][j] /= val;
 
     for (int i = 0; i < n; i++) {
         if (i != r) {
             float val = matrix[i][lead];
-            subtractRowsRec(matrix, i, r, lead, 0);
+            for (int j = 0; j < m; j++) matrix[i][j] -= val * matrix[r][j]; // TODO: REFACTOR
         }
     }
 
