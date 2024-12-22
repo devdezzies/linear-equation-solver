@@ -77,17 +77,11 @@ void findReducedRowEchelonForm(vector<vector<float>> &matrix) {
             swapRows(matrix, i, r);
             divideRow(matrix, r, matrix[r][lead]);
 
-            std::cout << "After dividing row " << r << " by " << matrix[r][lead] << ":\n";
-            printMatrix(matrix);
-
             for (int i = 0; i < n; i++) {
                 if (i != r) {
                     subtractRows(matrix, i, r, lead);
                 }
             }
-
-            std::cout << "After subtracting rows using lead " << lead << ":\n";
-            printMatrix(matrix);
             
             lead++;
         }
