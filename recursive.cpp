@@ -52,15 +52,15 @@ void findReducedRowEchelonFormRec(vector<vector<float>> &matrix, int r, int lead
     }
     
     
-    cout << "Swapping rows " << i << " and " << r << endl;
+    // cout << "Swapping rows " << i << " and " << r << endl;
     swapRowsRec(matrix, i, r, 0);
     float val = matrix[r][lead];
-    cout << "Dividing row " << r << " by " << val << endl;
+    // cout << "Dividing row " << r << " by " << val << endl;
     divideRowRec(matrix, r, val, 0);
 
     for (int i = 0; i < n; i++) {
         if (i != r) {
-            cout << "Subtracting row " << r << " from row " << i << endl;
+            // cout << "Subtracting row " << r << " from row " << i << endl;
             subtractRowsRec(matrix, i, r, lead, 0);
         }
     }
