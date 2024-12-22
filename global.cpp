@@ -47,7 +47,7 @@ void divideRow(vector<vector<float>> &matrix, int row, float divisor) {
 
 // substraction of two rows
 void subtractRows(vector<vector<float>> &matrix, int row, int leadRow, int lead) {
-    int m = matrix[0].size();
+    int m = matrix[0].size(); // Besar kolom
     float val = matrix[row][lead];
     for (int j = 0; j < m; j++) {
         matrix[row][j] -= val * matrix[leadRow][j];
@@ -87,34 +87,6 @@ void findReducedRowEchelonForm(vector<vector<float>> &matrix) {
         }
     }
 }
-
-// void findReducedRowEchelonFormRecursive(vector<vector<float>> &matrix, int r, int lead) {
-//     int n = matrix.size();
-//     int m = matrix[0].size();
-//     if (r >= n || lead >= m) return; // base case
-
-//     int i = r;
-//     while (matrix[i][lead] == 0) {
-//         i++;
-//         if (i == n) {
-//             findReducedRowEchelonFormRecursive(matrix, r, lead + 1); // recursive case
-//             return;
-//         }
-//     }
-
-//     swap(matrix[i], matrix[r]);
-//     float val = matrix[r][lead];
-//     for (int j = 0; j < m; j++) matrix[r][j] /= val;
-
-//     for (int i = 0; i < n; i++) {
-//         if (i != r) {
-//             float val = matrix[i][lead];
-//             for (int j = 0; j < m; j++) matrix[i][j] -= val * matrix[r][j]; // TODO: REFACTOR
-//         }
-//     }
-
-//     findReducedRowEchelonFormRecursive(matrix, r + 1, lead + 1); // recursive case
-// }
 
 void printSolvedLinearSystem(vector<vector<float>> &matrix) {
     int n = matrix.size();

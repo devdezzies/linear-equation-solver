@@ -15,8 +15,17 @@ vector<vector<float>> createDummyMatrix(int rows, int cols) {
 int main() {
     using namespace std::chrono;
 
+<<<<<<< HEAD
     int x = 10; // number of rows
     int y = 10; // number of columns
+=======
+    cout << "Enter the number of rows and columns: ";
+    cin >> n >> m;
+    cout << "==============ENTER AUGMENTED MATRIX (iterative)===============" << endl;
+    cout << "a11 a12 ... a1m = b1" << endl;
+    inputMatrix(matrix, n, m);
+    matrix2.assign(matrix.begin(), matrix.end()); // copy matrix to matrix2
+>>>>>>> 653f62a145c03073937cea4de5dd5e1f4e8ebb6e
 
     vector<vector<float>> matrix = createDummyMatrix(x, y+1);
     vector<vector<float>> matrix2 = createDummyMatrix(x, y+1);
@@ -53,3 +62,4 @@ int main() {
 
     return 0;
 }
+
