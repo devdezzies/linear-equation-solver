@@ -77,43 +77,50 @@ void findReducedRowEchelonForm(vector<vector<float>> &matrix) {
             swapRows(matrix, i, r);
             divideRow(matrix, r, matrix[r][lead]);
 
+            std::cout << "After dividing row " << r << " by " << matrix[r][lead] << ":\n";
+            printMatrix(matrix);
+
             for (int i = 0; i < n; i++) {
                 if (i != r) {
                     subtractRows(matrix, i, r, lead);
                 }
             }
+
+            std::cout << "After subtracting rows using lead " << lead << ":\n";
+            printMatrix(matrix);
+            
             lead++;
         }
     }
 }
 
-void findReducedRowEchelonFormRecursive(vector<vector<float>> &matrix, int r, int lead) {
-    int n = matrix.size();
-    int m = matrix[0].size();
-    if (r >= n || lead >= m) return; // base case
+// void findReducedRowEchelonFormRecursive(vector<vector<float>> &matrix, int r, int lead) {
+//     int n = matrix.size();
+//     int m = matrix[0].size();
+//     if (r >= n || lead >= m) return; // base case
 
-    int i = r;
-    while (matrix[i][lead] == 0) {
-        i++;
-        if (i == n) {
-            findReducedRowEchelonFormRecursive(matrix, r, lead + 1); // recursive case
-            return;
-        }
-    }
+//     int i = r;
+//     while (matrix[i][lead] == 0) {
+//         i++;
+//         if (i == n) {
+//             findReducedRowEchelonFormRecursive(matrix, r, lead + 1); // recursive case
+//             return;
+//         }
+//     }
 
-    swap(matrix[i], matrix[r]);
-    float val = matrix[r][lead];
-    for (int j = 0; j < m; j++) matrix[r][j] /= val;
+//     swap(matrix[i], matrix[r]);
+//     float val = matrix[r][lead];
+//     for (int j = 0; j < m; j++) matrix[r][j] /= val;
 
-    for (int i = 0; i < n; i++) {
-        if (i != r) {
-            float val = matrix[i][lead];
-            for (int j = 0; j < m; j++) matrix[i][j] -= val * matrix[r][j]; // TODO: REFACTOR
-        }
-    }
+//     for (int i = 0; i < n; i++) {
+//         if (i != r) {
+//             float val = matrix[i][lead];
+//             for (int j = 0; j < m; j++) matrix[i][j] -= val * matrix[r][j]; // TODO: REFACTOR
+//         }
+//     }
 
-    findReducedRowEchelonFormRecursive(matrix, r + 1, lead + 1); // recursive case
-}
+//     findReducedRowEchelonFormRecursive(matrix, r + 1, lead + 1); // recursive case
+// }
 
 void printSolvedLinearSystem(vector<vector<float>> &matrix) {
     int n = matrix.size();
