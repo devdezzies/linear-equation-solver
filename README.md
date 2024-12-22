@@ -1,5 +1,7 @@
 # 🫎 Linear Equation System Solver using Gauss-Jordan Elimination written in C++
 
+![alt text](assets/usage.png)
+
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Solving Linear System](#solving-linear-equation-system)
