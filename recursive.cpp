@@ -45,10 +45,6 @@ void findReducedRowEchelonFormRec(vector<vector<float>> &matrix, int r, int lead
     int i = r;
     while (matrix[i][lead] == 0) {
         i++;
-        // if (i == n) {
-        //     findReducedRowEchelonFormRec(matrix, r, lead + 1); // recursive case
-        //     return;
-        // }
     }
     if (i == n) {
         findReducedRowEchelonFormRec(matrix, r, lead + 1); // recursive case
