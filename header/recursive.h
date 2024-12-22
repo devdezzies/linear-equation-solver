@@ -4,7 +4,7 @@
 using namespace std;
 
 void findReducedRowEchelonFormRec(vector<vector<float>> &matrix, int r, int lead);
-void swapRowsRec(vector<vector<float>> &matrix, int i, int j, int k = 0);
+void swapRowsRec(vector<vector<float>> &matrix, int i, int j);
 void divideRowRec(vector<vector<float>> &matrix, int i, float val);
 void subtractRowsRec(vector<vector<float>> &matrix, int i, int j, int lead);
 
