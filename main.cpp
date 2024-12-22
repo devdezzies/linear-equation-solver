@@ -1,4 +1,5 @@
 #include "./header/global.h"
+#include "./header/recursive.h"
 
 int main() {
     vector<vector<float>> matrix;
@@ -14,7 +15,7 @@ int main() {
     printMatrix(matrix);
 
     cout << "Reduced Row Echelon Form: " << endl;
-    findReducedRowEchelonForm(matrix);
+    findReducedRowEchelonFormRec(matrix, 0, 0);
     printMatrix(matrix);
 
     cout << "SOLVED LINEAR SYSTEM: " << endl;
