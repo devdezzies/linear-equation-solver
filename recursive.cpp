@@ -51,22 +51,19 @@ void findReducedRowEchelonFormRec(vector<vector<float>> &matrix, int r, int lead
         return;
     }
     
-
+    
+    cout << "Swapping rows " << i << " and " << r << endl;
     swapRowsRec(matrix, i, r, 0);
     float val = matrix[r][lead];
+    cout << "Dividing row " << r << " by " << val << endl;
     divideRowRec(matrix, r, val, 0);
-
-    cout << "After dividing row " << r << " by " << val << ":" << endl;
-    printMatrix(matrix);
 
     for (int i = 0; i < n; i++) {
         if (i != r) {
+            cout << "Subtracting row " << r << " from row " << i << endl;
             subtractRowsRec(matrix, i, r, lead, 0);
         }
     }
-
-    cout << "After subtracting rows using lead " << lead << ":" << endl;
-    printMatrix(matrix);
 
     findReducedRowEchelonFormRec(matrix, r + 1, lead + 1); // recursive case
 }

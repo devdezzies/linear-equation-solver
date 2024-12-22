@@ -1,7 +1,9 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 #include <bits/stdc++.h>
+#include <chrono>
 using namespace std;
+using namespace chrono;
 
 void inputMatrix(vector<vector<float>> &matrix, int n, int m);
 void printMatrix(vector<vector<float>> &matrix);
