@@ -85,6 +85,5 @@ int main() {
 To use the linear system solver, compile the code and run the executable. Provide the matrix as input, and the program will output the solution.
 
 ## Contributors
-- **Contributor 1**: [GitHub Profile](https://github.com/contributor1)
-- **Contributor 2**: [GitHub Profile](https://github.com/contributor2)
-- **Contributor 3**: [GitHub Profile](https://github.com/contributor3)
+- **Abdullah (103012330146)**: [devdezzies](https://github.com/devdezzies)
+- **Muhammad Febrian Hafiz ()**: [swagenough](https://github.com/swagenough)
