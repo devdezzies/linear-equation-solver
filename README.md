@@ -88,4 +88,4 @@ To use the linear system solver, compile the code and run the executable. Provid
 
 ## Contributors
 - **Abdullah (103012330146)**: [devdezzies](https://github.com/devdezzies)
-- **Muhammad Febrian Hafiz ()**: [swagenough](https://github.com/swagenough)
+- **Muhammad Febrian Hafiz (103012300332)**: [swagenough](https://github.com/swagenough)
