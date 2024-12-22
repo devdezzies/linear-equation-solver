@@ -20,14 +20,14 @@ void inputMatrix(vector<vector<float>> &matrix, int n, int m) {
 void printMatrix(vector<vector<float>> &matrix) {
     for (int i = 0; i < matrix.size(); i++) {
         for (int j = 0; j < matrix[i].size() - 1; j++) {
-            cout << matrix[i][j] << " ";
+            cout << matrix[i][j] << " "; // basic operation
         }
         cout << matrix[i][matrix[i].size() - 1];
         cout << endl;
     }
 }
 
-// Meenukar 2 baris
+// swap rows
 void swapRows(vector<vector<float>> &matrix, int row1, int row2) {
     int m = matrix[0].size();
     for (int j = 0; j < m; j++) {
@@ -37,7 +37,7 @@ void swapRows(vector<vector<float>> &matrix, int row1, int row2) {
     }
 }
 
-// Membagi baris dengan divisor
+// divide row by divisor to do basic row operation (row operation) => row = row / divisor
 void divideRow(vector<vector<float>> &matrix, int row, float divisor) {
     int m = matrix[0].size();
     for (int j = 0; j < m; j++) {
@@ -45,7 +45,7 @@ void divideRow(vector<vector<float>> &matrix, int row, float divisor) {
     }
 }
 
-// Subtraksi baris dengan leadRow
+// substraction of two rows
 void subtractRows(vector<vector<float>> &matrix, int row, int leadRow, int lead) {
     int m = matrix[0].size();
     float val = matrix[row][lead];
@@ -54,7 +54,7 @@ void subtractRows(vector<vector<float>> &matrix, int row, int leadRow, int lead)
     }
 }
 
-// Mencari bentuk eselon baris tereduksi
+// find the reduced row echelon form of the matrix
 void findReducedRowEchelonForm(vector<vector<float>> &matrix) {
     int n = matrix.size(); // n is the number of rows
     int m = matrix[0].size(); // m is the number of columns
@@ -87,38 +87,6 @@ void findReducedRowEchelonForm(vector<vector<float>> &matrix) {
     }
 }
 
-// PSEUDOCODE FOR findReducedRowEchelonForm
-// procedure rref(matrix)
-//     lead := 0
-//     for each row in matrix
-//         if lead >= number of columns in matrix
-//             break
-//         end if
-//         i := row
-//         while matrix[i][lead] = 0
-//             i := i + 1
-//             if i = number of rows in matrix
-//                 i := row
-//                 lead := lead + 1
-//                 if lead = number of columns in matrix
-//                     break
-//                 end if
-//             end if
-//         end while
-//         if lead < number of columns in matrix
-//             swap rows i and row
-//             divide row by matrix[row][lead]
-//             for each r in number of rows in matrix
-//                 if r ≠ row
-//                     subtract matrix[r] by matrix[row] * matrix[r][lead]
-//                 end if
-//             end for
-//             lead := lead + 1
-//         end if
-//     end for
-// end procedure
-
-
 void findReducedRowEchelonFormRecursive(vector<vector<float>> &matrix, int r, int lead) {
     int n = matrix.size();
     int m = matrix[0].size();
@@ -140,7 +108,7 @@ void findReducedRowEchelonFormRecursive(vector<vector<float>> &matrix, int r, in
     for (int i = 0; i < n; i++) {
         if (i != r) {
             float val = matrix[i][lead];
-            for (int j = 0; j < m; j++) matrix[i][j] -= val * matrix[r][j];
+            for (int j = 0; j < m; j++) matrix[i][j] -= val * matrix[r][j]; // TODO: REFACTOR
         }
     }
 
