@@ -61,7 +61,6 @@ void findReducedRowEchelonFormRec(vector<vector<float>> &matrix, int r, int lead
 
     for (int i = 0; i < n; i++) {
         if (i != r) {
-            //float val = matrix[i][lead];
             subtractRowsRec(matrix, i, r, lead, 0);
         }
     }
