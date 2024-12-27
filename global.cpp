@@ -124,3 +124,39 @@ void printSolvedLinearSystem(vector<vector<float>> &matrix) {
         cout << "x" << i + 1 << " = " << matrix[i][m - 1] << endl;
     }
 }
+
+vector<vector<float>> createDummyMatrix(int x, int y) {
+    vector<vector<float>> matrix;
+    for (int i = 0; i < x; i++) {
+        vector<float> row;
+        for (int j = 0; j < y; j++) {
+            row.push_back(rand() % 10);
+        }
+        matrix.push_back(row);
+    }
+    return matrix;
+}
+
+void plotData() {
+    // Create gnuplot script
+    ofstream scriptFile("plot_script.plt");
+    scriptFile << "set title 'Execution Time Comparison'\n" 
+    << "set xlabel 'Test Number'\n" 
+    << "set ylabel 'Time (seconds)'\n" 
+    << "plot 'execution_times.txt' using 1:2 title 'Iterative' with lines,\\\n"
+    << "     'execution_times.txt' using 1:3 title 'Recursive' with lines\n" 
+    << "pause -1\n";
+    scriptFile.close();
+
+    // Execute gnuplot
+    system("gnuplot plot_script.plt");
+}
+
+void saveDataToFile(const vector<double>& iterative_times, const vector<double>& recursive_times) {
+    ofstream dataFile("execution_times.txt");
+    for (size_t i = 0; i < iterative_times.size(); i++) {
+        dataFile << i << " " << iterative_times[i] 
+                << " " << recursive_times[i] << endl;
+    }
+    dataFile.close();
+}

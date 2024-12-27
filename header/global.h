@@ -2,6 +2,8 @@
 #define GLOBAL_H
 #include <bits/stdc++.h>
 #include <chrono>
+#include <fstream>
+#include <iostream>
 using namespace std;
 using namespace chrono;
 
@@ -13,5 +15,7 @@ void swapRows(vector<vector<float>> &matrix, int i, int j);
 void divideRow(vector<vector<float>> &matrix, int i, float val);
 void subtractRows(vector<vector<float>> &matrix, int i, int j, int lead);
 void printSolvedLinearSystem(vector<vector<float>> &matrix);
-
+vector<vector<float>> createDummyMatrix(int x, int y);
+void plotData();
+void saveDataToFile(const vector<double>& iterative_times, const vector<double>& recursive_times);
 #endif // GLOBAL_H
